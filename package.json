@@ -1,0 +1,258 @@
+{
+  "name": "@salesforce/plugin-data",
+  "version": "2.4.4",
+  "description": "Plugin for salesforce data commands",
+  "author": "Salesforce",
+  "main": "lib/index.js",
+  "homepage": "https://github.com/salesforcecli/plugin-data",
+  "keywords": [
+    "force",
+    "salesforce",
+    "sfdx",
+    "salesforcedx",
+    "sfdx-plugin"
+  ],
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "config": {},
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "sfdx",
+    "devPlugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-command-snapshot",
+      "@salesforce/plugin-command-reference"
+    ],
+    "topics": {
+      "force": {
+        "description": "Legacy commands for backward compatibility.",
+        "subtopics": {
+          "data": {
+            "description": "Manage records in your org using Bulk API V1.",
+            "longDescription": "Use the data commands to insert and delete data in your orgs using V1 of Bulk API, using CSV files as input.",
+            "subtopics": {
+              "bulk": {
+                "description": "Bulk manage records in your org using Bulk API V1",
+                "longDescription": "Use the data commands to insert and delete data in your orgs using V1 of Bulk API, using CSV files as input."
+              }
+            }
+          }
+        }
+      },
+      "data": {
+        "description": "Manage records in your org.",
+        "longDescription": "Use the data commands to manipulate records in your org. Commands are available to help you work with various APIs. Import CSV files with the Bulk API V2. Export and import data with the SObject Tree Save API. Perform simple CRUD operations on individual records with the REST API.",
+        "subtopics": {
+          "create": {
+            "description": "Create a record."
+          },
+          "delete": {
+            "description": "Delete a single record or multiple records in bulk."
+          },
+          "export": {
+            "description": "Export data from your org."
+          },
+          "get": {
+            "description": "Get a single record."
+          },
+          "import": {
+            "description": "Import data to your org."
+          },
+          "query": {
+            "description": "Query records."
+          },
+          "update": {
+            "description": "Update a single record."
+          },
+          "upsert": {
+            "description": "Upsert many records."
+          }
+        }
+      }
+    }
+  },
+  "files": [
+    "/lib",
+    "/messages",
+    "/schema",
+    "/oclif.manifest.json"
+  ],
+  "repository": "salesforcecli/plugin-data",
+  "bugs": "https://github.com/forcedotcom/cli/issues",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "wireit",
+    "clean": "sf-clean",
+    "clean-all": "sf-clean all",
+    "clean:lib": "shx rm -rf lib && shx rm -rf coverage && shx rm -rf .nyc_output && shx rm -f oclif.manifest.json",
+    "compile": "wireit",
+    "docs": "sf-docs",
+    "format": "wireit",
+    "lint": "wireit",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "prepack": "sf-prepack",
+    "prepare": "sf-install",
+    "test": "wireit",
+    "test:nuts": "nyc mocha \"./test/**/*.nut.ts\" --slow 4500 --timeout 600000 --parallel --jobs 20",
+    "test:only": "wireit",
+    "version": "oclif readme"
+  },
+  "dependencies": {
+    "@oclif/core": "^2.8.7",
+    "@salesforce/core": "^4.3.5",
+    "@salesforce/kit": "^3.0.3",
+    "@salesforce/sf-plugins-core": "^3.1.3",
+    "@salesforce/ts-types": "^2.0.3",
+    "chalk": "^4.1.0",
+    "csv-parse": "^4.16.3",
+    "csv-stringify": "^6.4.0",
+    "jsforce": "^2.0.0-beta.27",
+    "tslib": "^2"
+  },
+  "devDependencies": {
+    "@oclif/plugin-command-snapshot": "^4.0.5",
+    "@salesforce/cli-plugins-testkit": "^4.1.1",
+    "@salesforce/dev-config": "^4.0.1",
+    "@salesforce/dev-scripts": "^5.4.2",
+    "@salesforce/plugin-command-reference": "^3.0.10",
+    "@salesforce/prettier-config": "^0.0.3",
+    "@salesforce/ts-sinon": "^1.4.8",
+    "@swc/core": "^1.3.31",
+    "@types/chai-as-promised": "^7.1.3",
+    "@types/shelljs": "^0.8.10",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.59.9",
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-salesforce": "^2.0.1",
+    "eslint-config-salesforce-license": "^0.2.0",
+    "eslint-config-salesforce-typescript": "^1.1.1",
+    "eslint-plugin-header": "^3.1.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsdoc": "^44.2.7",
+    "eslint-plugin-sf-plugin": "^1.15.9",
+    "husky": "^7.0.4",
+    "mocha": "^9.1.3",
+    "nyc": "^15.1.0",
+    "oclif": "^3.9.0",
+    "prettier": "^2.8.8",
+    "pretty-quick": "^3.1.0",
+    "shelljs": "~0.8.4",
+    "shx": "^0.3.3",
+    "sinon": "10.0.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.9.5",
+    "wireit": "^0.9.5"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "compile",
+        "lint"
+      ]
+    },
+    "compile": {
+      "command": "tsc -p . --pretty --incremental",
+      "files": [
+        "src/**/*.ts",
+        "**/tsconfig.json",
+        "messages/**"
+      ],
+      "output": [
+        "lib/**",
+        "*.tsbuildinfo"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "format": {
+      "command": "prettier --write \"+(src|test|schemas)/**/*.+(ts|js|json)|command-snapshot.json\"",
+      "files": [
+        "src/**/*.ts",
+        "test/**/*.ts",
+        "schemas/**/*.json",
+        "command-snapshot.json",
+        ".prettier*"
+      ],
+      "output": []
+    },
+    "lint": {
+      "command": "eslint src test --color --cache --cache-location .eslintcache",
+      "files": [
+        "src/**/*.ts",
+        "test/**/*.ts",
+        "messages/**",
+        "**/.eslint*",
+        "**/tsconfig.json"
+      ],
+      "output": []
+    },
+    "test:compile": {
+      "command": "tsc -p \"./test\" --pretty",
+      "files": [
+        "test/**/*.ts",
+        "**/tsconfig.json"
+      ],
+      "output": []
+    },
+    "test": {
+      "dependencies": [
+        "test:compile",
+        "test:only",
+        "test:command-reference",
+        "test:deprecation-policy",
+        "lint",
+        "test:json-schema"
+      ]
+    },
+    "test:only": {
+      "command": "nyc mocha \"test/**/*.test.ts\"",
+      "env": {
+        "FORCE_COLOR": "2"
+      },
+      "files": [
+        "test/**/*.ts",
+        "src/**/*.ts",
+        "**/tsconfig.json",
+        ".mocha*",
+        "!*.nut.ts",
+        ".nycrc"
+      ],
+      "output": []
+    },
+    "test:command-reference": {
+      "command": "\"./bin/dev\" commandreference:generate --erroronwarnings",
+      "files": [
+        "src/**/*.ts",
+        "messages/**",
+        "package.json"
+      ],
+      "output": [
+        "tmp/root"
+      ]
+    },
+    "test:deprecation-policy": {
+      "command": "\"./bin/dev\" snapshot:compare",
+      "files": [
+        "src/**/*.ts"
+      ],
+      "output": [],
+      "dependencies": [
+        "compile"
+      ]
+    },
+    "test:json-schema": {
+      "command": "\"./bin/dev\" schema:compare",
+      "files": [
+        "src/**/*.ts",
+        "schemas"
+      ],
+      "output": []
+    }
+  }
+}
