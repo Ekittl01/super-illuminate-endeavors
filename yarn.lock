@@ -1019,12 +1019,10 @@
     sinon "^5.1.1"
     tslib "^2.5.3"
 
-"@salesforce/ts-types@^2.0.1", "@salesforce/ts-types@^2.0.2", "@salesforce/ts-types@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@salesforce/ts-types/-/ts-types-2.0.3.tgz#ae944fce71e3fc4c154592f3ee56496d2b6c9d5e"
-  integrity sha512-PWxNB1GhlX045GN6TQ8HRvJudVpm3SE/v3520itBSCXSM+iBSQ09YIxT6EO2XXGwofQBXlQqN5hsXVI5+uFazg==
-  dependencies:
-    tslib "^2.5.3"
+"@salesforce/ts-types@^2.0.1", "@salesforce/ts-types@^2.0.12", "@salesforce/ts-types@^2.0.2", "@salesforce/ts-types@^2.0.3":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@salesforce/ts-types/-/ts-types-2.0.12.tgz#60420622812a7ec7e46d220667bc29b42dc247ff"
+  integrity sha512-BIJyduJC18Kc8z+arUm5AZ9VkPRyw1KKAm+Tk+9LT99eOzhNilyfKzhZ4t+tG2lIGgnJpmytZfVDZ0e2kFul8g==
 
 "@sindresorhus/is@^4.0.0":
   version "4.6.0"
